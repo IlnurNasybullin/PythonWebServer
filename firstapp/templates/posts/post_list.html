@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Модели в Django</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="top-line">
+            <form action="" method="GET">
+                <div style="width: 300px; display: inline-block; margin-right: 60px">
+                    <div class="field">
+                        <input type="search" placeholder="Введите заголовок" aria-label="Search" name="search" value="{{search_query}}">
+                        <span class="input-bottom-line"></span>
+                    </div>
+                </div>
+                <button class="link special" type="submit">Поиск</button>
+            </form>
+            <div>
+                <a class="link special" href="new"> Создать пост</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if posts %}
+            {% if posts.count > 0 %}
+            <h2>Список сообщения</h2>
+            <table class="table table-tripped table-bordered">
+                <tr>
+                    <th>Author</th>
+                    <th>Наименование</th>
+                    <th>Текст</th>
+                    <th>Дата публикации новости</th>
+                </tr>
+                {% for post in posts %}
+                <tr>
+                    <th>{{post.author}}</th>
+                    <th>{{post.title}}</th>
+                    <th>{{post.text}}</th>
+                    <th>{{post.published_date}}</th>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
